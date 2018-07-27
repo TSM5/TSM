@@ -1,0 +1,498 @@
+Out[20]: 0
+
+df['Bare Nuclei'].isna().sum()
+Out[21]: 0
+
+df=dataframe.replace('?',np.NaN)
+
+df['Bare Nuclei'].isna().sum()
+Out[23]: 16
+
+df.isna().sum()
+Out[24]: 
+Sample code number              0
+Clump Thickness                 0
+Uniformity of Cell Size         0
+Uniformity of Cell Shape        0
+Marginal Adhesion               0
+Single Epithelial Cell Size     0
+Bare Nuclei                    16
+Bland Chromatin                 0
+Normal Nucleoli                 0
+Mitoses                         0
+class                           0
+dtype: int64
+
+df=df.fillna(method='ffill')
+
+df.isna().sum()
+Out[26]: 
+Sample code number             0
+Clump Thickness                0
+Uniformity of Cell Size        0
+Uniformity of Cell Shape       0
+Marginal Adhesion              0
+Single Epithelial Cell Size    0
+Bare Nuclei                    0
+Bland Chromatin                0
+Normal Nucleoli                0
+Mitoses                        0
+class                          0
+dtype: int64
+
+dataframe.dtypes
+Out[27]: 
+Sample code number              int64
+Clump Thickness                 int64
+Uniformity of Cell Size         int64
+Uniformity of Cell Shape        int64
+Marginal Adhesion               int64
+Single Epithelial Cell Size     int64
+Bare Nuclei                    object
+Bland Chromatin                 int64
+Normal Nucleoli                 int64
+Mitoses                         int64
+class                           int64
+dtype: object
+
+df.describe()
+Out[28]: 
+       Sample code number   Clump Thickness  Uniformity of Cell Size  \
+count         6.990000e+02       699.000000               699.000000   
+mean          1.071704e+06         4.417740                 3.134478   
+std           6.170957e+05         2.815741                 3.051459   
+min           6.163400e+04         1.000000                 1.000000   
+25%           8.706885e+05         2.000000                 1.000000   
+50%           1.171710e+06         4.000000                 1.000000   
+75%           1.238298e+06         6.000000                 5.000000   
+max           1.345435e+07        10.000000                10.000000   
+
+       Uniformity of Cell Shape  Marginal Adhesion  \
+count                699.000000         699.000000   
+mean                   3.207439           2.806867   
+std                    2.971913           2.855379   
+min                    1.000000           1.000000   
+25%                    1.000000           1.000000   
+50%                    1.000000           1.000000   
+75%                    5.000000           4.000000   
+max                   10.000000          10.000000   
+
+       Single Epithelial Cell Size  Bland Chromatin  Normal Nucleoli  \
+count                   699.000000       699.000000       699.000000   
+mean                      3.216023         3.437768         2.866953   
+std                       2.214300         2.438364         3.053634   
+min                       1.000000         1.000000         1.000000   
+25%                       2.000000         2.000000         1.000000   
+50%                       2.000000         3.000000         1.000000   
+75%                       4.000000         5.000000         4.000000   
+max                      10.000000        10.000000        10.000000   
+
+          Mitoses       class  
+count  699.000000  699.000000  
+mean     1.589413    2.689557  
+std      1.715078    0.951273  
+min      1.000000    2.000000  
+25%      1.000000    2.000000  
+50%      1.000000    2.000000  
+75%      1.000000    4.000000  
+max     10.000000    4.000000  
+
+data=df.describe()
+
+df.groupby('class').size()
+Out[30]: 
+class
+2    458
+4    241
+dtype: int64
+
+core=df.corr()
+
+skew=df.skew()
+
+df.hist()
+Out[33]: 
+array([[<matplotlib.axes._subplots.AxesSubplot object at 0x000001FFD7B04A90>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFD7EC7630>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFD7F011D0>],
+       [<matplotlib.axes._subplots.AxesSubplot object at 0x000001FFD7F322E8>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFD7F5FDD8>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFD7F5FE10>],
+       [<matplotlib.axes._subplots.AxesSubplot object at 0x000001FFD7FD7B38>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFD7F82FD0>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFD803F6D8>],
+       [<matplotlib.axes._subplots.AxesSubplot object at 0x000001FFD805F320>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFD80ACE48>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFD80E6978>]],
+      dtype=object)
+
+df.hist()
+Out[34]: 
+array([[<matplotlib.axes._subplots.AxesSubplot object at 0x000001FFD7B04A20>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFD842E550>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFD846B080>],
+       [<matplotlib.axes._subplots.AxesSubplot object at 0x000001FFD849BBE0>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFD84BE390>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFD84D8828>],
+       [<matplotlib.axes._subplots.AxesSubplot object at 0x000001FFD85435C0>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFD857F1D0>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFD85B9128>],
+       [<matplotlib.axes._subplots.AxesSubplot object at 0x000001FFD854F908>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFD861BA20>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFD8655E80>]],
+      dtype=object)
+
+df=df[:,1:]
+Traceback (most recent call last):
+
+  File "<ipython-input-35-b011c85ff35f>", line 1, in <module>
+    df=df[:,1:]
+
+  File "C:\Users\manik\Anaconda3\lib\site-packages\pandas\core\frame.py", line 2139, in __getitem__
+    return self._getitem_column(key)
+
+  File "C:\Users\manik\Anaconda3\lib\site-packages\pandas\core\frame.py", line 2146, in _getitem_column
+    return self._get_item_cache(key)
+
+  File "C:\Users\manik\Anaconda3\lib\site-packages\pandas\core\generic.py", line 1840, in _get_item_cache
+    res = cache.get(item)
+
+TypeError: unhashable type: 'slice'
+
+
+
+
+df=df.iloc[:,1:].values
+
+df.plot(kind='density', subplots=True, layout=(3,3), sharex=False)
+Traceback (most recent call last):
+
+  File "<ipython-input-37-5c5e52749385>", line 1, in <module>
+    df.plot(kind='density', subplots=True, layout=(3,3), sharex=False)
+
+AttributeError: 'numpy.ndarray' object has no attribute 'plot'
+
+
+
+
+df.hist()
+Traceback (most recent call last):
+
+  File "<ipython-input-38-5a60dcb072fa>", line 1, in <module>
+    df.hist()
+
+AttributeError: 'numpy.ndarray' object has no attribute 'hist'
+
+
+
+
+dataframe = read_csv(filename, names=names,delimiter=',')
+#knowing datatypes of each columns
+dataframe.dtypes
+#finding missing values
+#convert missing values from ? to NUMPY NAN
+df=dataframe.replace('?',np.NaN)
+#counting number of instances missing with each column
+df.isna().sum()
+#Now we came to know that bare nuclei is the one having missing values 
+#implementing missing values
+df=df.fillna(method='ffill')
+
+df.plot(kind='density', subplots=True, layout=(3,3), sharex=False)
+Traceback (most recent call last):
+
+  File "<ipython-input-40-5c5e52749385>", line 1, in <module>
+    df.plot(kind='density', subplots=True, layout=(3,3), sharex=False)
+
+  File "C:\Users\manik\Anaconda3\lib\site-packages\pandas\plotting\_core.py", line 2677, in __call__
+    sort_columns=sort_columns, **kwds)
+
+  File "C:\Users\manik\Anaconda3\lib\site-packages\pandas\plotting\_core.py", line 1902, in plot_frame
+    **kwds)
+
+  File "C:\Users\manik\Anaconda3\lib\site-packages\pandas\plotting\_core.py", line 1729, in _plot
+    plot_obj.generate()
+
+  File "C:\Users\manik\Anaconda3\lib\site-packages\pandas\plotting\_core.py", line 251, in generate
+    self._setup_subplots()
+
+  File "C:\Users\manik\Anaconda3\lib\site-packages\pandas\plotting\_core.py", line 299, in _setup_subplots
+    layout_type=self._layout_type)
+
+  File "C:\Users\manik\Anaconda3\lib\site-packages\pandas\plotting\_tools.py", line 229, in _subplots
+    nrows, ncols = _get_layout(naxes, layout=layout, layout_type=layout_type)
+
+  File "C:\Users\manik\Anaconda3\lib\site-packages\pandas\plotting\_tools.py", line 88, in _get_layout
+    'required size %s' % (nrows, ncols, nplots))
+
+ValueError: Layout of 3x3 must be larger than required size 10
+
+
+
+
+df.plot(kind='density', subplots=True, layout=(5,5), sharex=False)
+Out[41]: 
+array([[<matplotlib.axes._subplots.AxesSubplot object at 0x000001FFD990B470>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFD991B390>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFD99595C0>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFD99915C0>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFD99C8AC8>],
+       [<matplotlib.axes._subplots.AxesSubplot object at 0x000001FFD99C8B00>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFD9A2EF98>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFD9A63F98>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFD9AA9518>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFD9AB3828>],
+       [<matplotlib.axes._subplots.AxesSubplot object at 0x000001FFD9B0EA58>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDB528A58>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDB55FF98>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDB59AF98>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDB5D1438>],
+       [<matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDB60A3C8>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDB6276A0>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDB6803C8>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDB613588>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDB6DDEB8>],
+       [<matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDB723358>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDB75D358>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDB79A358>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDB7C0908>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDB7FADD8>]],
+      dtype=object)
+
+data.plot(kind='box', subplots=True, layout=(5,5), sharex=False, sharey=False)
+Out[42]: 
+Sample code number                AxesSubplot(0.125,0.747241;0.133621x0.132759)
+Clump Thickness                AxesSubplot(0.285345,0.747241;0.133621x0.132759)
+Uniformity of Cell Size         AxesSubplot(0.44569,0.747241;0.133621x0.132759)
+Uniformity of Cell Shape       AxesSubplot(0.606034,0.747241;0.133621x0.132759)
+Marginal Adhesion              AxesSubplot(0.766379,0.747241;0.133621x0.132759)
+Single Epithelial Cell Size       AxesSubplot(0.125,0.587931;0.133621x0.132759)
+Bland Chromatin                AxesSubplot(0.285345,0.587931;0.133621x0.132759)
+Normal Nucleoli                 AxesSubplot(0.44569,0.587931;0.133621x0.132759)
+Mitoses                        AxesSubplot(0.606034,0.587931;0.133621x0.132759)
+class                          AxesSubplot(0.766379,0.587931;0.133621x0.132759)
+dtype: object
+
+data.plot(kind='box', subplots=True, layout=(4,4), sharex=False, sharey=False)
+Out[43]: 
+Sample code number                AxesSubplot(0.125,0.712609;0.168478x0.167391)
+Clump Thickness                AxesSubplot(0.327174,0.712609;0.168478x0.167391)
+Uniformity of Cell Size        AxesSubplot(0.529348,0.712609;0.168478x0.167391)
+Uniformity of Cell Shape       AxesSubplot(0.731522,0.712609;0.168478x0.167391)
+Marginal Adhesion                 AxesSubplot(0.125,0.511739;0.168478x0.167391)
+Single Epithelial Cell Size    AxesSubplot(0.327174,0.511739;0.168478x0.167391)
+Bland Chromatin                AxesSubplot(0.529348,0.511739;0.168478x0.167391)
+Normal Nucleoli                AxesSubplot(0.731522,0.511739;0.168478x0.167391)
+Mitoses                            AxesSubplot(0.125,0.31087;0.168478x0.167391)
+class                           AxesSubplot(0.327174,0.31087;0.168478x0.167391)
+dtype: object
+
+import pandas as pd
+
+pd.tools.plotting.scatter_matrix(df)
+__main__:1: FutureWarning: 'pandas.tools.plotting.scatter_matrix' is deprecated, import 'pandas.plotting.scatter_matrix' instead.
+Out[45]: 
+array([[<matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDD4C32E8>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDD3746A0>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDD3AD6A0>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDD3E7710>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDD421710>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDD421748>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDD483DA0>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDD79EDA0>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDD7D9DA0>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDD775A90>],
+       [<matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDBB299E8>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDD8546A0>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDD88DB00>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDD8CF080>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDD8F1EF0>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDD927F60>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDD963400>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDD99EEF0>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDD93BB38>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDDA0A9B0>],
+       [<matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDDA43E10>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDDA7FD30>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDDAB5C50>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDDAED5C0>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDDB265C0>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDDB614E0>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDDB994E0>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDDAF7198>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDDBFCC50>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDDC37CC0>],
+       [<matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDDC71CC0>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDDCABCC0>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDDCDD710>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDECE8BE0>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDED2D160>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDED64160>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDED90400>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDEDC7400>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDEE02860>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDEE3A860>],
+       [<matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDEDDF780>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDEE9DE80>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDEEE3320>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDEF1D320>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDEF55240>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDEF81940>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDEFBADA0>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDEFF5DA0>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDF02AD30>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDF061940>],
+       [<matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDF09A9B0>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDF0D59B0>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDF10F9B0>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDF0EF9B0>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDF17B550>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDF1B6550>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDF1EE550>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDF22AA90>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDF252F60>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDF28CEF0>],
+       [<matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDF2C3E10>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDF2FFE10>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDF2654A8>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDF36E630>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDF3A76A0>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDF3E25C0>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDF41B5C0>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDF44D0F0>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDF489550>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDF4C4550>],
+       [<matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDF4FD4E0>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDF5340F0>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDF56A160>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDF5A5080>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDF5DD080>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDF5BA5F8>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDF6341D0>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDF66D550>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDF6A6550>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDF6E04E0>],
+       [<matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDF7151D0>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDF74D240>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDF788240>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDF7C3240>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDF79E710>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDF825DA0>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDF861DA0>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDF894CC0>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDF8DD240>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDF9047F0>],
+       [<matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDF93F780>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDF97A6A0>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDF9B46A0>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDF918358>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDFA15E80>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDFA50EF0>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDFA8BE10>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDFAC2E10>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDFAF8940>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x000001FFDFB32DA0>]],
+      dtype=object)
+
+X=df.iloc[:,1:11].values
+Y=df.iloc[:,11].values
+Traceback (most recent call last):
+
+  File "<ipython-input-46-1000d5b1e735>", line 2, in <module>
+    Y=df.iloc[:,11].values
+
+  File "C:\Users\manik\Anaconda3\lib\site-packages\pandas\core\indexing.py", line 1367, in __getitem__
+    return self._getitem_tuple(key)
+
+  File "C:\Users\manik\Anaconda3\lib\site-packages\pandas\core\indexing.py", line 1737, in _getitem_tuple
+    self._has_valid_tuple(tup)
+
+  File "C:\Users\manik\Anaconda3\lib\site-packages\pandas\core\indexing.py", line 204, in _has_valid_tuple
+    if not self._has_valid_type(k, i):
+
+  File "C:\Users\manik\Anaconda3\lib\site-packages\pandas\core\indexing.py", line 1672, in _has_valid_type
+    return self._is_valid_integer(key, axis)
+
+  File "C:\Users\manik\Anaconda3\lib\site-packages\pandas\core\indexing.py", line 1713, in _is_valid_integer
+    raise IndexError("single positional indexer is out-of-bounds")
+
+IndexError: single positional indexer is out-of-bounds
+
+
+
+
+X=df.iloc[:,1:11].values
+
+X.dtypes
+Traceback (most recent call last):
+
+  File "<ipython-input-48-45c615031b96>", line 1, in <module>
+    X.dtypes
+
+AttributeError: 'numpy.ndarray' object has no attribute 'dtypes'
+
+
+
+
+X
+Out[49]: 
+array([[5, 1, 1, ..., 1, 1, 2],
+       [5, 4, 4, ..., 2, 1, 2],
+       [3, 1, 1, ..., 1, 1, 2],
+       ...,
+       [5, 10, 10, ..., 10, 2, 4],
+       [4, 8, 6, ..., 6, 1, 4],
+       [4, 8, 8, ..., 4, 1, 4]], dtype=object)
+
+X=df.iloc[:,1:10].values
+
+Y=df.iloc[:,10].values
+
+models = []
+models.append(('LR', LogisticRegression()))
+models.append(('LDA', LinearDiscriminantAnalysis()))
+models.append(('KNN', KNeighborsClassifier()))
+models.append(('CART', DecisionTreeClassifier()))
+models.append(('NB', GaussianNB()))
+models.append(('SVM', SVC()))
+
+for name, model in models:
+  kfold = KFold(n_splits=10, random_state=7)
+  cv_results = cross_val_score(model, X, Y, cv=kfold, scoring=scoring)
+  results.append(cv_results)
+  names.append(name)
+  msg = "%s: %f (%f)" % (name, cv_results.mean(), cv_results.std())
+  print(msg)
+Traceback (most recent call last):
+
+  File "<ipython-input-53-fd469e00b70b>", line 3, in <module>
+    cv_results = cross_val_score(model, X, Y, cv=kfold, scoring=scoring)
+
+NameError: name 'scoring' is not defined
+
+
+
+
+results = []
+names = []
+scoring = 'accuracy'
+for name, model in models:
+  kfold = KFold(n_splits=10, random_state=7)
+  cv_results = cross_val_score(model, X, Y, cv=kfold, scoring=scoring)
+  results.append(cv_results)
+  names.append(name)
+  msg = "%s: %f (%f)" % (name, cv_results.mean(), cv_results.std())
+  print(msg)
+LR: 0.962857 (0.041991)
+LDA: 0.957143 (0.056785)
+KNN: 0.964244 (0.042492)
+CART: 0.934224 (0.035069)
+NB: 0.955673 (0.028153)
+SVM: 0.952836 (0.027118)
+
+fig = pyplot.figure()
+fig.suptitle('Algorithm Comparison')
+ax = fig.add_subplot(111)
+pyplot.boxplot(results)
+ax.set_xticklabels(names)
+pyplot.show()
